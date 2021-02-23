@@ -2,7 +2,6 @@
 <header>
   <title>My Bitcoin</title>
   <meta charset="utf-8">
-  <link href="style.css" rel="stylesheet">
 </header>
 <body>
   <pre>
@@ -45,25 +44,86 @@
 
       curl_close($curl); // Close request
     ?>
-    <script>
+    </pre>
+    <div id="main">
+      <table>
+        <tr>
+          <th rowspan="3">MyData:</th>
+          <td>MyBTC: <?php echo $mypricebtc;?>€</td>
+        </tr>
+        <tr>
+          <td>MyLTC: <?php echo $mypriceltc;?>€</td>
+        </tr>
+        <tr>
+          <td>All: <?php echo $all;?>€</td>
+        </tr>
+        <tr>
+          <th rowspan="2">General:</th>
+          <td><img src="img/btc.jpg"><?php echo $myresponse['data']['BTC']['quote']['EUR']['price']; ?></td>
+        </tr>
+        <tr>
+          <td><img src="img/ltc.png"><?php echo $myresponse['data']['LTC']['quote']['EUR']['price']; ?></td>
+        </tr>
+      </table>
+      <div>
+        <div id="search">
+          <form name="BitcoinForm" action="form.php" method="POST">
+            BTC: <input type="text" name="newbtc" /><br><br>
+            <a href="form.php"><input type="submit" value="Calculate" onclick="showData" id="btn"/></a>
+          </form>
+        </div>
+
+        <!--<input type="submit" value="test" onclick="proofData">
+        <p id="demo"></p>-->
+      </div>
+    </div>
+    <script type="text/javascript">
        function showData(){
          var value = document.getElementsByName('newbtc');
          alert(${value});
        }
+
+       function proofData(){
+         var data = <?php echo json_encode($mypricebtc); ?>;
+         document.write(data);
+       }
     </script>
-    <div>
-      <div>
-        <h1>BTC: <?php echo $mypricebtc;?>€</h1>
-        <h1>LTC: <?php echo $mypriceltc;?>€</h1>
-        <h1>All: <?php echo $all;?>€</h1>
-      </div>
-      <div>
-        <form name="BitcoinForm" action="form.php" method="POST">
-          BTC: <input type="text" name="newbtc" /><br>
-          <a href="form.php"><input type="submit" value="Calculate" onclick="showData"/></a>
-        </form>
-      </div>
-    </div>
-</pre>
-</body>
+    <style>
+      body{
+        font-family: sans-serif;
+      }
+      table, th, td, tr{
+        border: 1px solid black;
+
+      }
+      th, td, tr{
+        padding:15px;
+      }
+      table{
+        margin: 0 auto;
+        margin-top:20px;
+        position:center;
+        text-align: right;
+        background-color: white;
+      }
+      #main{
+        text-align: center;
+      }
+      #search{
+        margin-top: 20px;
+      }
+      img{
+        width:50px;
+        height:auto;
+        margin-right: 10px;
+      }
+      #btn{
+        width:120px;
+        height:auto;
+      }
+      #btn:hover{
+        font-size: 20px;
+      }
+    </style>
+  </body>
 </html>
