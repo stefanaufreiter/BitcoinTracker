@@ -31,7 +31,7 @@
         CURLOPT_RETURNTRANSFER => 1         // ask for raw response instead of bool
       ));
 
-      $yourbtc = 0.00101389; //Your personal amount of BTC
+      $yourbtc = 0.00250462; //Your personal amount of BTC
       $yourltc = 0.16103988; //Your personal amount of LTC
 
       $response = curl_exec($curl); // Send the request, save the response
